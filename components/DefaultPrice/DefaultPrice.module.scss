@@ -1,0 +1,27 @@
+.defaultPrice {
+  margin-bottom: 0.5em;
+  background-color: #eee;
+  padding: 1em 0;
+
+  .numberContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .itemNumber {
+    color: #999;
+    font-size: 2.5em;
+  }
+
+  .priceContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    small {
+      color: #666;
+    }
+  }
+}
