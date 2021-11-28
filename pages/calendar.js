@@ -14,7 +14,7 @@ const Calendar = ({
     <div className={styles.calendar}>
       <Grid container spacing={2} className={styles.mainTable}>
         <Grid item xs={1} className={styles.verList}>
-          {defaultHours.map((hour) => <li>{hour.hour} hs</li>)}
+          {defaultHours.map((hour) => <li key={`item_${hour.hour}`}>{hour.hour} hs</li>)}
           <li>{defaultHours[defaultHours.length - 1].hour + 1} hs</li>
         </Grid>
         <Grid item xs={11} className={styles.horList}>
@@ -28,7 +28,7 @@ const Calendar = ({
                 <ul key={day.name}>
                   {day.hours.map((hour) => (
                     <li
-                      key={`${day.name}_${hour}`}
+                      key={`${day.name}_${hour.hour}`}
                       className={styles.hourItem}
                       style={day.enabled ? {'backgroundColor': `rgba(90, 138, 170, ${(day.price || price) / 60})`} : {}}
                     >

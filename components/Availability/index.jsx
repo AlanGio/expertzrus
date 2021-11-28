@@ -33,15 +33,16 @@ const Availability = ({
           </Grid>
           <Grid item sm={12} className={styles.daysOfTheWeek}>
             {daysOfTheWeek.map((day, index) => (
-              <div className={styles.dayItem}>
+              <div className={styles.dayItem} key={day.name}>
 
                 <div className={styles.checkName}>
                   <h4>{day.name}</h4>
                   <Checkbox
                     {...label}
+                    
                     onChange={(event) => checkDay(index, event.target.checked)}
                     name={day.name}
-                    defaultChecked={day.enabled}
+                    checked={day.enabled}
                   />
                 </div>
                 <div className={styles.checkName}>
