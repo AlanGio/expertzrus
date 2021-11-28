@@ -37,7 +37,7 @@ const Availability = ({ checkDay, changeDayPrice, price }) => (
               <div className={styles.changePrice}>
                 <FormControl fullWidth>
                   <InputLabel htmlFor="day-price">
-                    Hourly Rate for this day
+                    Day Hr Rate
                   </InputLabel>
                   <OutlinedInput
                     id="day-price"
