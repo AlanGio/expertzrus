@@ -1,34 +1,35 @@
-import classnames from 'classnames';
+import React from "react";
+import classnames from "classnames";
+import PropTypes from "prop-types";
 
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
-import { defaultHours } from '../default/initialState';
-import HourBox from '../components/HourBox';
+import { defaultHours } from "../default/initialState";
+import HourBox from "../components/HourBox";
 
-import styles from '../styles/Home.module.scss';
+import styles from "../styles/Home.module.scss";
 
-const Calendar = ({
-  price,
-  days,
-  clickHourBox,
-  changeHourPrice,
-}) => {
+const Calendar = ({ price, days, clickHourBox, changeHourPrice }) => {
+  const hours = defaultHours();
 
   return (
     <div className={styles.calendar}>
       <Grid container spacing={2} className={styles.mainTable}>
         <Grid item xs={1} className={styles.verList}>
-          {defaultHours.map((hour) => <li key={`item_${hour.name}`}>{hour.name} hs</li>)}
-          <li>{defaultHours[defaultHours.length - 1].name + 1} hs</li>
+          {hours.map((hour) => (
+            <li key={`item_${hour.name}`}>{hour.name} hs</li>
+          ))}
+          <li>{hours[hours.length - 1].name + 1} hs</li>
         </Grid>
         <Grid item xs={11} className={styles.horList}>
-
           {days.map((day, index) => {
             const dayIndex = index;
             return (
               <div
                 key={day.name}
-                className={classnames(styles.day, {[styles.disabled]: !day.enabled})}
+                className={classnames(styles.day, {
+                  [styles.disabled]: !day.enabled,
+                })}
               >
                 <ul key={day.name}>
                   {day.hours.map((hour, index) => (
@@ -45,14 +46,25 @@ const Calendar = ({
                   ))}
                 </ul>
               </div>
-            )
+            );
           })}
-
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
+
+Calendar.propTypes = {
+  price: PropTypes.number,
+  days: PropTypes.array.isRequired,
+  clickHourBox: PropTypes.func,
+  changeHourPrice: PropTypes.func,
+};
+
+Calendar.defaultProps = {
+  price: 0,
+  clickHourBox: null,
+  changeHourPrice: null,
+};
 
 export default Calendar;
-

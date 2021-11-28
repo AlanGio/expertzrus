@@ -1,7 +1,6 @@
 .home {
-
-
-  ul, li {
+  ul,
+  li {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -12,7 +11,7 @@
     justify-content: space-around;
     flex-direction: row;
 
-    >* {
+    > * {
       width: 100%;
       text-align: center;
     }
@@ -22,6 +21,10 @@
     .hourItem {
       background-color: #eee;
       color: #999;
+
+      * {
+        opacity: 0.5;
+      }
 
       &:hover {
         background-color: #eee;
@@ -34,8 +37,8 @@
     display: flex;
     flex-direction: column;
     color: gray;
-    
-    >* {
+
+    > * {
       width: 100%;
       text-align: center;
       line-height: 70px;
@@ -72,5 +75,4 @@
       cursor: pointer;
     }
   }
-
 }

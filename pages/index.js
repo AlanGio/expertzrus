@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Head from 'next/head'
+import Head from "next/head";
 
-import Calendar from './calendar';
-import DefaultPrice from '../components/DefaultPrice'
-import Availability from '../components/Availability'
+import Calendar from "./calendar";
+import DefaultPrice from "../components/DefaultPrice";
+import Availability from "../components/Availability";
 
-import { initialState, defaultHours } from '../default/initialState';
+import { initialState, defaultHours } from "../default/initialState";
 
-import styles from '../styles/Home.module.scss'
+import styles from "../styles/Home.module.scss";
 
 const Home = () => {
-
   const [data, setData] = useState(initialState);
 
   const handleChangeDefaultPrice = (value) => {
     const newData = { ...data };
-    newData.price = parseInt(value);
+    newData.price = value;
     setData(newData);
   };
 
@@ -28,25 +27,29 @@ const Home = () => {
 
   const handleChangeDayPrice = (index, value) => {
     const newData = { ...data };
-    newData.days[index].price = parseInt(value);
+    newData.days[index].price = value;
     setData(newData);
   };
 
   const handleClickBox = (dayIndex, hourIndex) => {
     const newData = { ...data };
-    newData.days[dayIndex].hours[hourIndex].enabled = !newData.days[dayIndex].hours[hourIndex].enabled;
+    newData.days[dayIndex].hours[hourIndex].enabled =
+      !newData.days[dayIndex].hours[hourIndex].enabled;
     setData(newData);
-  }
+  };
 
   const handleChangeHourPrice = (dayIndex, hourIndex, value) => {
     const newData = { ...data };
-    newData.days[dayIndex].hours[hourIndex].price = value;
+    const price = newData.days[dayIndex].price || newData.price;
+
+    console.log(value, price);
+    newData.days[dayIndex].hours[hourIndex].price =
+      value !== price ? value : null;
     setData(newData);
-  }
+  };
 
   return (
     <div className="container">
-
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>ExpertzRUs.com. Load your time availability and prices.</title>
@@ -80,7 +83,7 @@ const Home = () => {
 
       <footer></footer>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

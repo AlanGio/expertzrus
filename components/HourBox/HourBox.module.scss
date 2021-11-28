@@ -37,4 +37,8 @@
     align-items: center;
     padding-right: 8px;
   }
+
+  &.disabled {
+    opacity: 0.5;
+  }
 }

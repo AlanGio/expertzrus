@@ -1,65 +1,58 @@
 const defPrice = 35;
 
-export const defaultHours = [];
-for (let i = 8; i <= 19; i++) {
-  defaultHours.push({
-    name: i,
-    enabled: true,
-    price: null,
-  })
-};
-
-export const defaultHoursDisabled = [];
-for (let i = 8; i <= 19; i++) {
-  defaultHoursDisabled.push({
-    name: i,
-    enabled: false,
-    price: null,
-  })
-};
-
-const defaultValues = {
-  hours: defaultHours,
-  enabled: true,
-  price: null,
-}
-
-export const daysOfTheWeek =  [
-	{
-		name: "Monday",
-		...defaultValues,
-  },
-  {
-		name: "Tuesday",
-		...defaultValues,
-  },
-  {
-		name: "Wednesday",
-		...defaultValues,
-  },
-  {
-		name: "Thursday",
-		...defaultValues,
-  },
-  {
-		name: "Friday",
-		...defaultValues,
-  },
-  {
-		name: "Saturday",
-    ...defaultValues,
-    hours : defaultHoursDisabled,
-		enabled: false,
-  },
-  {
-		name: "Sunday",
-    ...defaultValues,
-    hours : defaultHoursDisabled,
-		enabled: false,
+export const defaultHours = () => {
+  const hours = [];
+  for (let i = 8; i <= 19; i++) {
+    hours.push({
+      name: i,
+      enabled: true,
+      price: null,
+    });
   }
+  return hours;
+};
+
+const defaultValues = (enabled = true) => {
+  const hours = defaultHours();
+  return {
+    hours,
+    enabled,
+    price: null,
+  };
+};
+
+export const daysOfTheWeek = [
+  {
+    name: "Monday",
+    ...defaultValues(),
+  },
+  {
+    name: "Tuesday",
+    ...defaultValues(),
+  },
+  {
+    name: "Wednesday",
+    ...defaultValues(),
+  },
+  {
+    name: "Thursday",
+    ...defaultValues(),
+  },
+  {
+    name: "Friday",
+    ...defaultValues(),
+  },
+  {
+    name: "Saturday",
+    ...defaultValues(false),
+  },
+  {
+    name: "Sunday",
+    ...defaultValues(false),
+  },
 ];
 
 export const initialState = {
   price: defPrice,
   days: daysOfTheWeek,
-}
+};
