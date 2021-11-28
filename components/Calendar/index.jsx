@@ -15,11 +15,13 @@ const Calendar = ({ price, days, clickHourBox, changeHourPrice }) => {
   return (
     <div className={styles.calendar}>
       <Grid container spacing={2} className={styles.mainTable}>
-        <Grid item xs={1} className={styles.verList}>
-          {hours.map((hour) => (
-            <li key={`item_${hour.name}`}>{hour.name} hs</li>
-          ))}
-          <li>{hours[hours.length - 1].name + 1} hs</li>
+        <Grid item xs={1}>
+          <ul className={styles.verList}>
+            {hours.map((hour) => (
+              <li key={`itemcolumn_${hour.name}`}>{hour.name} hs</li>
+            ))}
+            <li>{hours[hours.length - 1].name + 1} hs</li>
+          </ul>
         </Grid>
         <Grid item xs={11} className={styles.horList}>
           {days.map((day, index) => {
