@@ -54,7 +54,7 @@ const Availability = ({
                       label="Hourly Rate for this day"
                       size="small"
                       type="number"
-                      inputProps={{ min: 0, max: 10000 }}
+                      inputProps={{ min: 0, max: 1000 }}
                       value={day.price || price}
                       disabled={!day.enabled}
                     />

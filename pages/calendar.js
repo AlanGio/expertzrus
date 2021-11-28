@@ -21,10 +21,17 @@ const Calendar = ({
 
           {days.map(day => {
             return (
-              <div key={day.name} className={classnames(styles.day, {[styles.disabled]: !day.enabled})}>
+              <div
+                key={day.name}
+                className={classnames(styles.day, {[styles.disabled]: !day.enabled})}
+              >
                 <ul key={day.name}>
                   {day.hours.map((hour) => (
-                    <li key={`${day.name}_${hour}`} className={styles.hourItem}>
+                    <li
+                      key={`${day.name}_${hour}`}
+                      className={styles.hourItem}
+                      style={day.enabled ? {'backgroundColor': `rgba(90, 138, 170, ${(day.price || price) / 60})`} : {}}
+                    >
                       {day.price || price}
                     </li>
                   ))}

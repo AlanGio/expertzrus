@@ -61,12 +61,12 @@
 
   .hourItem {
     display: block;
-    background-color: antiquewhite;
+    // background-color: rgba(90, 138, 170, 0.5);
     height: 100%;
     border: 1px solid white;
 
     &:hover {
-      background-color: bisque;
+      background-color: rgba(90, 138, 170, 0.6);
       cursor: pointer;
     }
   }
