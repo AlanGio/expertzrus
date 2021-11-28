@@ -1,14 +1,24 @@
+import React from 'react';
+
 import Grid from '@mui/material/Grid';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
 
-import { daysOfTheWeek } from '../../default/defaultDaysData';
+import { daysOfTheWeek } from '../../default/initialState';
 
 import styles from './Availability.module.scss'
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-const Availability = () => {
+const Availability = ({
+  checkDay,
+  changeDayPrice,
+  price,
+}) => {
   return (
     <div className={styles.availability}>
 
@@ -22,10 +32,34 @@ const Availability = () => {
             <h2>Check your available days:</h2>
           </Grid>
           <Grid item sm={12} className={styles.daysOfTheWeek}>
-            {daysOfTheWeek.map(day => (
+            {daysOfTheWeek.map((day, index) => (
               <div className={styles.dayItem}>
-                <h4>{day.name}</h4>
-                <Checkbox {...label} defaultChecked={day.enabled} />
+
+                <div className={styles.checkName}>
+                  <h4>{day.name}</h4>
+                  <Checkbox
+                    {...label}
+                    onChange={(event) => checkDay(index, event.target.checked)}
+                    name={day.name}
+                    defaultChecked={day.enabled}
+                  />
+                </div>
+                <div className={styles.checkName}>
+                  <FormControl fullWidth sx={{ m: 2 }}>
+                    <InputLabel htmlFor="day-price">Hourly Rate for this day</InputLabel>
+                    <OutlinedInput
+                      id="day-price"
+                      onChange={(event) => changeDayPrice(index, event.target.value)}
+                      startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                      label="Hourly Rate for this day"
+                      size="small"
+                      type="number"
+                      inputProps={{ min: 0, max: 10000 }}
+                      value={day.price || price}
+                      disabled={!day.enabled}
+                    />
+                  </FormControl>
+                </div>
               </div>
             ))}
           </Grid>

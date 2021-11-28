@@ -18,6 +18,18 @@
     }
   }
 
+  .disabled {
+    .hourItem {
+      background-color: #eee;
+      color: #999;
+
+      &:hover {
+        background-color: #eee;
+        cursor: crosshair;
+      }
+    }
+  }
+
   .verList {
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Grid from '@mui/material/Grid';
 import LooksOneIcon from '@mui/icons-material/LooksOne';
@@ -9,13 +9,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import styles from './DefaultPrice.module.scss'
 
-const DefaultPrice = () => {
-  const [defaultPrice, setDefaultPrice] = useState(35);
-
-  const handleChange = (event) => {
-    setDefaultPrice(event.target.value);
-  };
-
+const DefaultPrice = ({
+  price,
+  changeDefaultPrice
+}) => {
   return (
     <div className={styles.defaultPrice}>
 
@@ -30,14 +27,14 @@ const DefaultPrice = () => {
           </Grid>
           <Grid item sm={6} className={styles.priceContainer}>
             <FormControl sx={{ m: 1 }}>
-              <InputLabel htmlFor="default-price">Hourly Rate</InputLabel>
+              <InputLabel htmlFor="default-price">Default Hourly Rate</InputLabel>
               <OutlinedInput
                 id="default-price"
-                value={defaultPrice}
-                onChange={handleChange}
+                onChange={(event) => changeDefaultPrice(event.target.value)}
                 type="number"
+                defaultValue={price}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                label="Hourly Rate"
+                label="Default Hourly Rate"
               />
             </FormControl>
             <small>The average hourly rate on our site for your position is: <strong>$35</strong></small>

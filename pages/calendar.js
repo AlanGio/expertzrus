@@ -1,31 +1,43 @@
+import classnames from 'classnames';
+
 import Grid from '@mui/material/Grid';
 
-import { defaultHours, daysOfTheWeek } from '../default/defaultDaysData';
+import styles from '../styles/Home.module.scss';
+import { defaultHours } from '../default/initialState';
 
-import styles from '../styles/Home.module.scss'
 
-export default function Calendar() {
+const Calendar = ({
+  price,
+  days,
+}) => {
   return (
     <div className={styles.calendar}>
       <Grid container spacing={2} className={styles.mainTable}>
         <Grid item xs={1} className={styles.verList}>
-          {Object.entries(defaultHours).map(([key]) => <li>{key} hs</li>)}
+          {defaultHours.map((hour) => <li>{hour.hour} hs</li>)}
+          <li>{defaultHours[defaultHours.length - 1].hour + 1} hs</li>
         </Grid>
         <Grid item xs={11} className={styles.horList}>
-          {daysOfTheWeek.map(day => {
+
+          {days.map(day => {
             return (
-              <div key={day.name} className={styles.day}>
+              <div key={day.name} className={classnames(styles.day, {[styles.disabled]: !day.enabled})}>
                 <ul key={day.name}>
-                  {Object.entries(day.hours).map(([key,value],i) => (
-                    <li key={`${day.name}_${key}`} className={styles.hourItem}></li>
+                  {day.hours.map((hour) => (
+                    <li key={`${day.name}_${hour}`} className={styles.hourItem}>
+                      {day.price || price}
+                    </li>
                   ))}
                 </ul>
               </div>
             )
           })}
+
         </Grid>
       </Grid>
     </div>
   )
 }
+
+export default Calendar;
 
