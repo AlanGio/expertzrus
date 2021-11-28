@@ -2,13 +2,11 @@ import React, { useState } from "react";
 
 import Head from "next/head";
 
-import Calendar from "./calendar";
+import Calendar from "../components/Calendar";
 import DefaultPrice from "../components/DefaultPrice";
 import Availability from "../components/Availability";
 
 import { initialState, defaultHours } from "../default/initialState";
-
-import styles from "../styles/Home.module.scss";
 
 const Home = () => {
   const [data, setData] = useState(initialState);
@@ -60,7 +58,7 @@ const Home = () => {
         />
       </Head>
 
-      <main className={styles.home}>
+      <main>
         <h1>Load your time price and availability</h1>
 
         <DefaultPrice

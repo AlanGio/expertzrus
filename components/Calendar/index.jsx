@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 
 import Grid from "@mui/material/Grid";
 
-import { defaultHours } from "../default/initialState";
-import HourBox from "../components/HourBox";
+import { defaultHours } from "../../default/initialState";
+import HourBox from "../HourBox";
 
-import styles from "../styles/Home.module.scss";
+import styles from "./Calendar.module.scss";
 
 const Calendar = ({ price, days, clickHourBox, changeHourPrice }) => {
   const hours = defaultHours();
