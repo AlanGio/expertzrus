@@ -15,22 +15,34 @@ const Home = () => {
   const [data, setData] = useState(initialState);
 
   const handleChangeDefaultPrice = (value) => {
-    const newData = { ...data};
+    const newData = { ...data };
     newData.price = parseInt(value);
     setData(newData);
   };
 
   const handleCheckDay = (index, check) => {
-    const newData = { ...data};
+    const newData = { ...data };
     newData.days[index].enabled = check;
     setData(newData);
   };
 
   const handleChangeDayPrice = (index, value) => {
-    const newData = { ...data};
+    const newData = { ...data };
     newData.days[index].price = parseInt(value);
     setData(newData);
   };
+
+  const handleClickBox = (dayIndex, hourIndex) => {
+    const newData = { ...data };
+    newData.days[dayIndex].hours[hourIndex].enabled = !newData.days[dayIndex].hours[hourIndex].enabled;
+    setData(newData);
+  }
+
+  const handleChangeHourPrice = (dayIndex, hourIndex, value) => {
+    const newData = { ...data };
+    newData.days[dayIndex].hours[hourIndex].price = value;
+    setData(newData);
+  }
 
   return (
     <div className="container">
@@ -61,6 +73,8 @@ const Home = () => {
           price={data.price}
           days={data.days}
           hours={defaultHours}
+          clickHourBox={handleClickBox}
+          changeHourPrice={handleChangeHourPrice}
         />
       </main>
 

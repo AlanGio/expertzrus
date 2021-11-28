@@ -1,18 +1,27 @@
-export const defPrice = 35;
-
+const defPrice = 35;
 
 export const defaultHours = [];
 for (let i = 8; i <= 19; i++) {
   defaultHours.push({
-    hour: i,
+    name: i,
+    enabled: true,
+    price: null,
+  })
+};
+
+export const defaultHoursDisabled = [];
+for (let i = 8; i <= 19; i++) {
+  defaultHoursDisabled.push({
+    name: i,
+    enabled: false,
     price: null,
   })
 };
 
 const defaultValues = {
+  hours: defaultHours,
   enabled: true,
   price: null,
-  hours: defaultHours,
 }
 
 export const daysOfTheWeek =  [
@@ -39,11 +48,13 @@ export const daysOfTheWeek =  [
   {
 		name: "Saturday",
     ...defaultValues,
+    hours : defaultHoursDisabled,
 		enabled: false,
   },
   {
 		name: "Sunday",
     ...defaultValues,
+    hours : defaultHoursDisabled,
 		enabled: false,
   }
 ];

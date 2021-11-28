@@ -35,7 +35,7 @@ const DefaultPrice = ({
                 defaultValue={price}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 label="Default Hourly Rate"
-                inputProps={{ min: 0, max: 1000 }}
+                inputProps={{ min: 1, max: 1000 }}
               />
             </FormControl>
             <small>The average hourly rate on our site for your position is: <strong>$35</strong></small>
